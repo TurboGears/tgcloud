@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ -e ${HOME}/venv ] ; then
+   deactivate >/dev/null 2>&1
+   rm -rf ${HOME}/venv
+fi
+   
+pyvenv ${HOME}/venv
+. ${HOME}/venv/bin/activate
+pip3 install --no-index --find-links file:///opt/tgcache `cat /opt/tgcache/pypkgs`
+
+grep '${HOME}/venv/bin/activate' ${HOME}/.bashrc >/dev/null 2>&1 || echo '. ${HOME}/venv/bin/activate' >> ${HOME}/.bashrc
+grep '^export PGDATABASE' ${HOME}/.bashrc >/dev/null 2>&1  || echo 'export PGDATABASE=template1' >> ${HOME}/.bashrc
+
+psql -c 'select rolname from pg_roles' template1 | grep vagrant >/dev/null
+
+if [ $? -ne 0 ]; then
+   sudo -u postgres createuser -s -d -l -r ${USER}
+fi
+
+echo Virtual environment created and prepared.
+echo Logout and back in to begin using it.

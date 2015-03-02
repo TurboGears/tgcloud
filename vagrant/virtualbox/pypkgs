@@ -1,0 +1,1 @@
+alembic Beaker crank FormEncode Genshi jinja2 Mako nose PasteDeploy psycopg2 repoze.lru repoze.who speaklater sprox SQLAlchemy tg.devtools tgext.admin tgext.crud tw2.core tw2.forms zope.interface zope.sqlalchemy
