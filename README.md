@@ -15,19 +15,19 @@ To use this, the process is simple.
 2. Get Vagrant installed and working correctly.
 3. Ensure that Vagrant is capable of getting a virtual machine started
    with virtualbox, and that you can "vagrant ssh" into that box.
-4. Execute the command "vagrant init tg2pg9 pedersen/tg2pg9"
+4. Execute the command "vagrant init pedersen/tg2pg9"
 5. Execute the command "vagrant up"
 
 At this point, you now have a fully functioning python installation,
 ready to run TurboGears. To quickstart your first application, do the
 following:
 
-  vagrant ssh
-  cd /vagrant
-  gearbox quickstart module_name_here
-  cd module_name_here
-  python setup.py develop
-  gearbox setup-app
+    vagrant ssh
+    cd /vagrant
+    gearbox quickstart module_name_here
+    cd module_name_here
+    python setup.py develop
+    gearbox setup-app
 
 Almost done. You now need to edit
 /vagrant/module_name_here/development.ini and change the "host" line
