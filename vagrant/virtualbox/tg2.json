@@ -86,7 +86,19 @@
 	    "inline": [
 		"echo removing excess packages",
 		"aptitude -y purge apparmor bash-completion brasero checkbox-gui checkbox-ng checkbox-ng-service command-not-found command-not-found-data deja-dup-backend-gvfs dmidecode eject fakeroot gnome-disk-utility gvfs gvfs-backends gvfs-daemons gvfs-fuse laptop-detect mtr-tiny nautilus nautilus-sendto nautilus-share network-manager-pptp network-manager-pptp-gnome ntfs-3g os-prober parted plainbox-provider-checkbox plainbox-provider-resource-generic pm-utils popularity-contest powermgmt-base ppp pppconfig pppoeconf pptp-linux python-commandnotfound python3-commandnotfound python3-checkbox-ng python3-checkbox-support rsync sessioninstaller software-center tasksel tasksel-data tcpdump telnet ubuntu-desktop ubuntu-minimal ubuntu-standard udisks2 usb-creator-common usb-creator-gtk",
+		"aptitude -y purge dosfstools ed file friendly-recovery ftp geoip-database groff-base hdparm info install-info installation-report iputils-tracepath irqbalance language-pack-gnome-en language-pack-gnome-en-base language-selector-common lshw man-db manpages manpages-dev mlocate nano netcat-openbsd pciutils sgml-base shared-mime-info strace tcpd ubuntu-release-upgrader-core update-manager-core usbutils xauth xdg-user-dirs xml-core",
+		"aptitude purge -y aptitude-doc-en biosdevname iptables language-pack-en language-pack-en-base lockfile-progs logrotate lsof ltrace net-tools lvm2 ufw whiptail",
+		"apt-get -y --auto-remove autoremove",
 		"aptitude clean"
+	    ]
+	},
+	{
+	    "type": "shell",
+	    "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+	    "inline": [
+		"echo Removing unnecessary cache and documentation files",
+		"rm /var/lib/apt/lists/* /var/cache/apt/pkgcache.bin /var/cache/apt/srcpkgcache.bin",
+		"rm -rf /usr/share/man/* /usr/share/doc/*"
 	    ]
 	},
 	{
