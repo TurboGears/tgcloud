@@ -1,6 +1,21 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+$tgsetup = <<TG
+if [ -e /vagrant/setup.py ]; then
+    echo Configuring your application
+    source ${HOME}/venv/bin/activate
+    cd /vagrant
+    python setup.py develop
+    DBNAME=`grep postgres development.ini | grep '^\s*sqlalchemy.url' | sed -e 's#^.*/##g' -e 's/\?.*$//'`
+    if [ ! -z "${DBNAME}" ]; then
+        createdb ${DBNAME}
+    fi
+    gearbox setup-app
+fi
+TG
+
 Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.provision "shell", inline: $tgsetup, privileged: false
 end

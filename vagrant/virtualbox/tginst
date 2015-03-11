@@ -16,6 +16,7 @@ psql -c 'select rolname from pg_roles' template1 | grep vagrant >/dev/null
 
 if [ $? -ne 0 ]; then
    sudo -u postgres createuser -s -d -l -r ${USER}
+   sudo -u postgres psql -d template1 -c "alter user vagrant with password 'vagrant'"
 fi
 
 echo Virtual environment created and prepared.
