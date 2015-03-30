@@ -31,7 +31,7 @@
         "http_port_min" : 9001,
         "http_port_max" : 9001,
 
-	"output_directory": "turbogears2-postgres",
+	"output_directory": "tg2-py3-ubuntu",
         "ssh_username": "{{user `ssh_name`}}",
         "ssh_password": "{{user `ssh_pass`}}",
         "ssh_wait_timeout": "90m",
@@ -87,16 +87,16 @@
 	[
 	    {
 		"type": "vagrant",
-		"output" : "output/turbogears2-postgres.box",
+		"output" : "output/tg2-py3-ubuntu.box",
 		"vagrantfile_template": "virtualbox/vagrantfile_template"
 	    },
 	    {
 		"type": "vagrant-cloud",
-		"box_tag": "pedersen/tg2pg9",
+		"box_tag": "pedersen/tg2-py3-ubuntu",
 		"keep_input_artifact": true,
 		"access_token": "{{user `cloud_token`}}",
-		"version": "2.3.4.1",
-		"version_description": "This release provides support for automatically running a setup.py script, creating the postgresql database, and running the 'gearbox setup_app' commands when running 'vagrant up'."
+		"version": "2.3.4.2",
+		"version_description": "This release provides support for running with MySQL as well as PostgreSQL. It enables the correct database server during the provisioning step. While it includes Mongo, it does not yet support running applications on it."
 	    }
 	]
     ]    

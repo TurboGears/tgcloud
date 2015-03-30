@@ -1,6 +1,6 @@
 .PHONY: upload
 
-output/turbogears2-postgres.box: input/ubuntu-14.10-server-amd64.iso
+output/tg2-py3-ubuntu.box: input/ubuntu-14.10-server-amd64.iso
 	packer build -color=false virtualbox/tg2.json
 	rm -rf packer_cache
 

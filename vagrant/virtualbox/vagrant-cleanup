@@ -11,12 +11,15 @@ echo Download Turbogears packages...
 mv /tmp/tginst /usr/local/bin/tginst
 mkdir -p /opt/tgcache
 mv /tmp/pypkgs /opt/tgcache/pypkgs
-pip3 install --download /opt/tgcache `cat /opt/tgcache/pypkgs`
+pip3 install --allow-external mysql-connector-python --download /opt/tgcache `cat /opt/tgcache/pypkgs`
 chmod -R 0755 /opt/tgcache /usr/local/bin/tginst
-sudo -u vagrant /usr/local/bin/tginst
 
 		
 echo preparing vagrant user...
+touch /home/vagrant/.psql_history
+chmod 0600 /home/vagrant/.psql_history
+chown vagrant:vagrant /home/vagrant/.psql_history
+
 mkdir -p /home/vagrant/.ssh
 mv /tmp/vagrant.pub /home/vagrant/.ssh/authorized_keys
 chmod 0700 /home/vagrant/.ssh
@@ -32,6 +35,10 @@ echo 'root:vagrant' | chpasswd
 echo Configuring SSH
 echo 'UseDNS no' >> /etc/ssh/sshd_config
 
+echo Disabling database services
+update-rc.d -f postgresql remove
+echo manual > /etc/init/mysql.override
+echo manual > /etc/init/mongodb.override
 		
 echo removing excess packages
 aptitude -y purge apparmor bash-completion brasero checkbox-gui checkbox-ng checkbox-ng-service command-not-found command-not-found-data deja-dup-backend-gvfs dmidecode eject fakeroot gnome-disk-utility gvfs gvfs-backends gvfs-daemons gvfs-fuse laptop-detect mtr-tiny nautilus nautilus-sendto nautilus-share network-manager-pptp network-manager-pptp-gnome ntfs-3g os-prober parted plainbox-provider-checkbox plainbox-provider-resource-generic pm-utils popularity-contest powermgmt-base ppp pppconfig pppoeconf pptp-linux python-commandnotfound python3-commandnotfound python3-checkbox-ng python3-checkbox-support rsync sessioninstaller software-center tasksel tasksel-data tcpdump telnet ubuntu-desktop ubuntu-minimal ubuntu-standard udisks2 usb-creator-common usb-creator-gtk

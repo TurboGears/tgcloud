@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo Configuring the environment
+
 if [ -e ${HOME}/venv ] ; then
    deactivate >/dev/null 2>&1
    rm -rf ${HOME}/venv
@@ -10,13 +12,50 @@ pyvenv ${HOME}/venv
 pip3 install --no-index --find-links file:///opt/tgcache `cat /opt/tgcache/pypkgs`
 
 grep '${HOME}/venv/bin/activate' ${HOME}/.bashrc >/dev/null 2>&1 || echo '. ${HOME}/venv/bin/activate' >> ${HOME}/.bashrc
-grep '^export PGDATABASE' ${HOME}/.bashrc >/dev/null 2>&1  || echo 'export PGDATABASE=template1' >> ${HOME}/.bashrc
 
-psql -c 'select rolname from pg_roles' template1 | grep vagrant >/dev/null
+function pgup() {
+    echo Configuring for PostgreSQL
+    DBNAME=$1
+    sudo update-rc.d postgresql defaults
+    sudo service postgresql start
+    
+    sudo -u postgres psql -d template1 -c 'select rolname from pg_roles' | grep vagrant >/dev/null
 
-if [ $? -ne 0 ]; then
-   sudo -u postgres createuser -s -d -l -r ${USER}
-   sudo -u postgres psql -d template1 -c "alter user vagrant with password 'vagrant'"
+    if [ $? -ne 0 ]; then
+	sudo -u postgres createuser -s -d -l -r vagrant
+	sudo -u postgres psql -d template1 -c "alter user vagrant with password 'vagrant'"
+    fi
+
+    createdb ${DBNAME}
+    grep '^export PGDATABASE' ${HOME}/.bashrc >/dev/null 2>&1  || echo "export PGDATABASE=${DBNAME}" >> ${HOME}/.bashrc
+}
+
+function mysqlup() {
+    echo Configuring for MySQL
+    DBNAME=$1
+    sudo rm -f /etc/init/mysql.override
+    sudo start mysql
+
+    echo "create database ${DBNAME};" | mysql --user=root --password=vagrant 
+}
+
+function mongoup() {
+    sudo rm -f /etc/init/mongodb.override
+    sudo start mongodb
+
+    # create database?
+}
+
+cd /vagrant
+if [ -e development.ini ] ; then
+    python setup.py develop
+
+    DBNAME=`grep '^\s*sqlalchemy.url\s*=' development.ini | sed -e 's/\?.*$//' -e 's#^.*/##'`
+    grep '^\s*sqlalchemy.url\s*=' development.ini | grep postgres >/dev/null 2>&1 && pgup ${DBNAME}
+    grep '^\s*sqlalchemy.url\s*=' development.ini | grep mysql >/dev/null 2>&1 && mysqlup ${DBNAME}
+    #grep '^\s*ming.url' development.ini >/dev/null 2>&1 && mongoup ${DBNAME} # Disabled until TG quickstart supports Mongo on Py3
+    
+    gearbox setup-app
 fi
 
 echo Virtual environment created and prepared.
