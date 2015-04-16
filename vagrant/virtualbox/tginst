@@ -6,10 +6,16 @@ if [ -e ${HOME}/venv ] ; then
    deactivate >/dev/null 2>&1
    rm -rf ${HOME}/venv
 fi
-   
-pyvenv ${HOME}/venv
-. ${HOME}/venv/bin/activate
-pip3 install --no-index --find-links file:///opt/tgcache `cat /opt/tgcache/pypkgs`
+
+if [ -e /vagrant/.python2 ] ; then
+    virtualenv --no-site-packages ${HOME}/venv
+    . ${HOME}/venv/bin/activate
+    pip2 install --no-index --find-links file:///opt/tgcache `cat /opt/tgcache/pypkgs`
+else
+    pyvenv ${HOME}/venv
+    . ${HOME}/venv/bin/activate
+    pip3 install --no-index --find-links file:///opt/tgcache `cat /opt/tgcache/pypkgs`
+fi
 
 grep '${HOME}/venv/bin/activate' ${HOME}/.bashrc >/dev/null 2>&1 || echo '. ${HOME}/venv/bin/activate' >> ${HOME}/.bashrc
 

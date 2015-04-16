@@ -1,11 +1,21 @@
+# TODO: Add support for MongoDB (requires TurboGears 2.3.5)
+# TODO: Add support for Vagrant / Docker
+# TODO: Add support for Vagrant / AWS
+# TODO: Add support for Docker (standalone)
+# TODO: Add Puppet support
+# TODO: Add Chef support
+# TODO: Add Ansible support
+# TODO: Document how to modify these recipes to suit any given project
+# TODO: Document using with existing project
+
 What This Box Provides
 ======================
 
 Using the tools here, you will be provided with a fully functional
-Ubuntu 14.10 virtual machine, running Python 3.4 in a virtualenv (that
-will always be active when you "vagrant ssh" in), TurboGears packages
-preinstalled (and reinstallable from local), along with PostgreSQL or
-MySQL (depending on your configuration).
+Ubuntu 14.10 virtual machine, running Python 3.4 (or 2.7) in a
+virtualenv (that will always be active when you "vagrant ssh" in),
+TurboGears packages preinstalled (and reinstallable from local), along
+with PostgreSQL or MySQL (depending on your configuration).
 
 Getting Started
 ===============
@@ -118,3 +128,11 @@ from this recipe, before deploying into any production system.
 * MySQL: user: root password: root
 
 The vagrant user for the operating system has passwordless sudo enabled.
+
+Use With Python 2.7
+===================
+
+To use this virtual machine with Python 2.7, simply make a file named
+".python2" in the same directory with your "setup.py" file. From
+there, reinstalling (as documented above) will give you a Python 2.7
+virtual env.

@@ -6,12 +6,16 @@ bash /mnt/VBoxLinuxAdditions.run
 umount /mnt
 rm /home/vagrant/VBoxGuestAdditions.iso
 
+echo Updating operating system
+aptitude update
+aptitude -y safe-upgrade
 		
 echo Download Turbogears packages...
 mv /tmp/tginst /usr/local/bin/tginst
 mkdir -p /opt/tgcache
 mv /tmp/pypkgs /opt/tgcache/pypkgs
 pip3 install --allow-external mysql-connector-python --download /opt/tgcache `cat /opt/tgcache/pypkgs`
+pip2 install --allow-external mysql-connector-python --download /opt/tgcache `cat /opt/tgcache/pypkgs`
 chmod -R 0755 /opt/tgcache /usr/local/bin/tginst
 
 		

@@ -95,8 +95,8 @@
 		"box_tag": "pedersen/tg2-py3-ubuntu",
 		"keep_input_artifact": true,
 		"access_token": "{{user `cloud_token`}}",
-		"version": "2.3.4.2",
-		"version_description": "This release provides support for running with MySQL as well as PostgreSQL. It enables the correct database server during the provisioning step. While it includes Mongo, it does not yet support running applications on it."
+		"version": "2.3.4.3",
+		"version_description": "This release provides support for Python 2.7 as well as Python 3.4. It also updates all operating system packages."
 	    }
 	]
     ]    
