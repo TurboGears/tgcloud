@@ -1,7 +1,5 @@
-# TODO: Add support for MongoDB (requires TurboGears 2.3.5)
-# TODO: Add support for Vagrant / Docker
+# TODO: Add support for Docker
 # TODO: Add support for Vagrant / AWS
-# TODO: Add support for Docker (standalone)
 # TODO: Add Puppet support
 # TODO: Add Chef support
 # TODO: Add Ansible support
@@ -12,10 +10,10 @@ What This Box Provides
 ======================
 
 Using the tools here, you will be provided with a fully functional
-Ubuntu 14.10 virtual machine, running Python 3.4 (or 2.7) in a
+Ubuntu 15.04 virtual machine, running Python 3.4 (or 2.7) in a
 virtualenv (that will always be active when you "vagrant ssh" in),
 TurboGears packages preinstalled (and reinstallable from local), along
-with PostgreSQL or MySQL (depending on your configuration).
+with PostgreSQL or MySQL or MongoDB (depending on your configuration).
 
 Getting Started
 ===============
@@ -26,7 +24,7 @@ To use this, the process is simple.
 2. Get Vagrant installed and working correctly.
 3. Ensure that Vagrant is capable of getting a virtual machine started
    with virtualbox, and that you can "vagrant ssh" into that box.
-4. Execute the command "vagrant init pedersen/tg2-py3-ubuntu"
+4. Execute the command "vagrant init turbogears/tg2-ubuntu"
 5. Execute the command "vagrant up"
 
 At this point, you now have a fully functioning python installation,
@@ -106,15 +104,10 @@ Genshi 0.7 (the latest released version) and Python 3.4 do not get
 along well. tgext.admin is broken while using it, along with many
 other items.
 
-TurboGears has a patch that fixes this problem, but it is not
-available until TurboGears 2.3.5 comes out. For now, do not use this
-image with apps built on Genshi and Python 3. Customize to your liking
-to get an environment that will work.
+TurboGears 2.3.5 provides a fix, though. To use it, add the following
+line to your [app:main] section, and get things working:
 
-When TurboGears 2.3.5 *does* come out, you will be able to add the
-following line to your [app:main] section, and get things working:
-
-genshi.name_constant_patch = true
+templating.genshi.name_constant_patch = true
 
 Passwords Baked Into This Image
 ===============================

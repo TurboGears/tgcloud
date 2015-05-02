@@ -40,16 +40,14 @@ function mysqlup() {
     echo Configuring for MySQL
     DBNAME=$1
     sudo rm -f /etc/init/mysql.override
-    sudo start mysql
+    sudo service mysql start
 
     echo "create database ${DBNAME};" | mysql --user=root --password=vagrant 
 }
 
 function mongoup() {
     sudo rm -f /etc/init/mongodb.override
-    sudo start mongodb
-
-    # create database?
+    sudo service mongodb start
 }
 
 cd /vagrant
@@ -59,7 +57,7 @@ if [ -e development.ini ] ; then
     DBNAME=`grep '^\s*sqlalchemy.url\s*=' development.ini | sed -e 's/\?.*$//' -e 's#^.*/##'`
     grep '^\s*sqlalchemy.url\s*=' development.ini | grep postgres >/dev/null 2>&1 && pgup ${DBNAME}
     grep '^\s*sqlalchemy.url\s*=' development.ini | grep mysql >/dev/null 2>&1 && mysqlup ${DBNAME}
-    #grep '^\s*ming.url' development.ini >/dev/null 2>&1 && mongoup ${DBNAME} # Disabled until TG quickstart supports Mongo on Py3
+    grep '^\s*ming.url' development.ini >/dev/null 2>&1 && mongoup ${DBNAME}
     
     gearbox setup-app
 fi

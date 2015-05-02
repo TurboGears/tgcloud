@@ -23,15 +23,15 @@
 	
         "disk_size" : 40000,
 
-        "iso_url": "input/ubuntu-14.10-server-amd64.iso",
-        "iso_checksum": "91bd1cfba65417bfa04567e4f64b5c55",
+        "iso_url": "input/ubuntu-15.04-server-amd64.iso",
+        "iso_checksum": "487f4a81f22f8597503db3d51a1b502e",
         "iso_checksum_type": "md5",
 
         "http_directory" : ".",
         "http_port_min" : 9001,
         "http_port_max" : 9001,
 
-	"output_directory": "tg2-py3-ubuntu",
+	"output_directory": "tg2-ubuntu",
         "ssh_username": "{{user `ssh_name`}}",
         "ssh_password": "{{user `ssh_pass`}}",
         "ssh_wait_timeout": "90m",
@@ -87,16 +87,16 @@
 	[
 	    {
 		"type": "vagrant",
-		"output" : "output/tg2-py3-ubuntu.box",
+		"output" : "output/tg2-ubuntu.box",
 		"vagrantfile_template": "virtualbox/vagrantfile_template"
 	    },
 	    {
 		"type": "vagrant-cloud",
-		"box_tag": "pedersen/tg2-py3-ubuntu",
+		"box_tag": "turbogears/tg2-ubuntu",
 		"keep_input_artifact": true,
 		"access_token": "{{user `cloud_token`}}",
-		"version": "2.3.4.3",
-		"version_description": "This release provides support for Python 2.7 as well as Python 3.4. It also updates all operating system packages."
+		"version": "2.3.5.0",
+		"version_description": "Upgrade Ubuntu to 15.04. Upgrade TurboGears to 2.3.5."
 	    }
 	]
     ]    
