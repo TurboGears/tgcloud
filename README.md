@@ -118,7 +118,7 @@ from this recipe, before deploying into any production system.
 
 * Shell: user: vagrant password: vagrant
 * PostgreSQL: user: vagrant password: vagrant
-* MySQL: user: root password: root
+* MySQL: user: root password: vagrant
 
 The vagrant user for the operating system has passwordless sudo enabled.
 
