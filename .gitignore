@@ -1,3 +1,6 @@
 packer-variables.json
 *.iso
 *.box
+.vagrant
+*.iml
+.idea

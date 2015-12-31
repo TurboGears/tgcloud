@@ -1,0 +1,19 @@
+<VirtualHost *:80>
+  ServerName www.site1.com
+
+  WSGIProcessGroup www.site1.com
+  WSGIDaemonProcess www.site1.com user=www-data group=www-data threads=4 python-path=<%= scope['turbogears::tgapp::venv'] %>/lib/python<%= scope['turbogears::pythonver'] %>/site-packages
+  WSGIScriptAlias / <%= scope['turbogears::tgapp::tgappdir'] %>/app.wsgi
+
+  #Serve static files directly without TurboGears
+  Alias /images <%= scope['turbogears::tgapp::tgappdir'] %>/<%= scope['turbogears::tgapp::app'] %>/public/images
+  Alias /css <%= scope['turbogears::tgapp::tgappdir'] %>/<%= scope['turbogears::tgapp::app'] %>/public/css
+  Alias /js <%= scope['turbogears::tgapp::tgappdir'] %>/<%= scope['turbogears::tgapp::app'] %>/public/js
+
+  CustomLog /var/log/apache2/www.site1.com-access_log common
+  ErrorLog /var/log/apache2/www.site1.com-error_log
+
+  <Directory <%= scope['turbogears::tgapp::tgbase'] %>>
+    Require all granted
+  </Directory>
+</VirtualHost>
