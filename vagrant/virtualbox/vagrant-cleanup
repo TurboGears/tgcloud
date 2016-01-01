@@ -14,8 +14,9 @@ echo Download Turbogears packages...
 mv /tmp/tginst /usr/local/bin/tginst
 mkdir -p /opt/tgcache
 mv /tmp/pypkgs /opt/tgcache/pypkgs
-pip3 install --allow-external mysql-connector-python --download /opt/tgcache `cat /opt/tgcache/pypkgs`
-pip2 install --allow-external mysql-connector-python --download /opt/tgcache `cat /opt/tgcache/pypkgs`
+pip3 install --download /opt/tgcache `cat /opt/tgcache/pypkgs`
+pip2 install --download /opt/tgcache `cat /opt/tgcache/pypkgs`
+pip3 install --download /opt/tgcache http://cdn.mysql.com/Downloads/Connector-Python/mysql-connector-python-2.0.4.zip
 chmod -R 0755 /opt/tgcache /usr/local/bin/tginst
 
 		

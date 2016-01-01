@@ -10,11 +10,13 @@ fi
 if [ -e /vagrant/.python2 ] ; then
     virtualenv --no-site-packages ${HOME}/venv
     . ${HOME}/venv/bin/activate
-    pip2 install --no-index --find-links file:///opt/tgcache `cat /opt/tgcache/pypkgs`
+    pip2 install --no-index --find-links file:///opt/tgcache --allow-external mysql-connector-python `cat /opt/tgcache/pypkgs`
+    pip2 install --no-index --find-links file:///opt/tgcache /opt/tgcache/mysql-connector-python-2.0.4.zip
 else
     pyvenv ${HOME}/venv
     . ${HOME}/venv/bin/activate
-    pip3 install --no-index --find-links file:///opt/tgcache `cat /opt/tgcache/pypkgs`
+    pip3 install --no-index --find-links file:///opt/tgcache --allow-external mysql-connector-python `cat /opt/tgcache/pypkgs`
+    pip3 install --no-index --find-links file:///opt/tgcache /opt/tgcache/mysql-connector-python-2.0.4.zip
 fi
 
 grep '${HOME}/venv/bin/activate' ${HOME}/.bashrc >/dev/null 2>&1 || echo '. ${HOME}/venv/bin/activate' >> ${HOME}/.bashrc
