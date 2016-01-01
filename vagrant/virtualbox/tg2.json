@@ -105,8 +105,8 @@
 		"box_tag": "turbogears/tg2-ubuntu",
 		"keep_input_artifact": true,
 		"access_token": "{{user `cloud_token`}}",
-		"version": "2.3.5.1",
-		"version_description": "Upgrade Ubuntu to 15.10. Upgrade TurboGears to 2.3.5."
+		"version": "2.3.7.0",
+		"version_description": "Upgrade Ubuntu to 15.10. Upgrade TurboGears to 2.3.7."
 	    }
 	]
     ]    
