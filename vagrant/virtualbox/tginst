@@ -10,12 +10,14 @@ fi
 if [ -e /vagrant/.python2 ] ; then
     virtualenv --no-site-packages ${HOME}/venv
     . ${HOME}/venv/bin/activate
-    pip2 install --no-index --find-links file:///opt/tgcache --allow-external mysql-connector-python `cat /opt/tgcache/pypkgs`
+    pip2 install --no-index --find-links file:///opt/tgcache /opt/tgcache/wheel-0.29.0-py2.py3-none-any.whl
+    pip2 install --no-index --find-links file:///opt/tgcache mysql-connector-python `cat /opt/tgcache/pypkgs`
     pip2 install --no-index --find-links file:///opt/tgcache /opt/tgcache/mysql-connector-python-2.0.4.zip
 else
     pyvenv ${HOME}/venv
     . ${HOME}/venv/bin/activate
-    pip3 install --no-index --find-links file:///opt/tgcache --allow-external mysql-connector-python `cat /opt/tgcache/pypkgs`
+    pip3 install --no-index --find-links file:///opt/tgcache /opt/tgcache/wheel-0.29.0-py2.py3-none-any.whl
+    pip3 install --no-index --find-links file:///opt/tgcache mysql-connector-python `cat /opt/tgcache/pypkgs`
     pip3 install --no-index --find-links file:///opt/tgcache /opt/tgcache/mysql-connector-python-2.0.4.zip
 fi
 

@@ -23,8 +23,8 @@
 	
         "disk_size" : 40000,
 
-        "iso_url": "input/ubuntu-15.10-server-amd64.iso",
-        "iso_checksum": "fb4eef05edcabfc5cccd4cb44f3f9b48",
+        "iso_url": "input/ubuntu-16.04-server-amd64.iso",
+        "iso_checksum": "23e97cd5d4145d4105fbf29878534049",
         "iso_checksum_type": "md5",
 
         "http_directory" : ".",
@@ -106,7 +106,7 @@
 		"keep_input_artifact": true,
 		"access_token": "{{user `cloud_token`}}",
 		"version": "2.3.7.0",
-		"version_description": "Upgrade Ubuntu to 15.10. Upgrade TurboGears to 2.3.7."
+		"version_description": "Upgrade Ubuntu to 16.04. Upgrade TurboGears to 2.3.7."
 	    }
 	]
     ]    

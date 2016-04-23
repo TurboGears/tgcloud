@@ -1,7 +1,7 @@
 .PHONY: upload
 
-URL=http://releases.ubuntu.com/15.10/ubuntu-15.10-server-amd64.iso
-ISO=input/ubuntu-15.10-server-amd64.iso
+URL=http://releases.ubuntu.com/16.04/ubuntu-16.04-server-amd64.iso
+ISO=input/ubuntu-16.04-server-amd64.iso
 
 output/tg2-ubuntu.box: $(ISO)
 	packer build --color=false --only=virtualbox-iso virtualbox/tg2.json
