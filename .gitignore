@@ -4,3 +4,4 @@ packer-variables.json
 .vagrant
 *.iml
 .idea
+vagrant/Vagrantfile
