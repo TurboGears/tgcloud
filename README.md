@@ -1,10 +1,11 @@
-# TODO: Add support for Docker
-# TODO: Add support for Vagrant / AWS
-# TODO: Add Puppet support
-# TODO: Add Chef support
-# TODO: Add Ansible support
-# TODO: Document how to modify these recipes to suit any given project
-# TODO: Document using with existing project
+* [What This Box Provides](#what-this-box-provides)
+* [Getting Started](#getting-started)
+* [Reinstalling](#reinstalling)
+* [Changing the Database for psql](#changing-the-database-for-psql)
+* [MySQL, SQLAlchemy, and Python 3](#mysql,-sqlalchemy,-and-python-3)
+* [Genshi and Python 3.4](#genshi-and-python-3.4)
+* [Passwords Baked Into This Image](#passwords-baked-into-this-image)
+* [Use With Python 2.7](#use-ith-python-2.7)
 
 What This Box Provides
 ======================
@@ -66,8 +67,8 @@ rebuilt. This will destroy any data outside of /vagrant so be careful!
 Note that the second option is likely to be the fastest rebuild
 option.
 
-Changing the Database for "psql"
-================================
+Changing the Database for psql
+==============================
 
 psql connects to the "template1" database by default. You can connect
 to your own PostgreSQL database either specifying the correct name on
