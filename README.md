@@ -5,7 +5,7 @@
 * [MySQL, SQLAlchemy, and Python 3](#mysql-sqlalchemy-and-python-3)
 * [Genshi and Python 3.4](#genshi-and-python-34)
 * [Passwords Baked Into This Image](#passwords-baked-into-this-image)
-* [Use With Python 2.7](#use-ith-python-27)
+* [Use With Python 2.7](#use-with-python-27)
 
 What This Box Provides
 ======================
